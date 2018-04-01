@@ -6,7 +6,7 @@ import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
 import { HeroesComponent }      from './heroes/heroes.component';
-import { HeroService }          from './hero.service';
+import { PlayerService }        from './player.service';
 import { MessageService }       from './message.service';
 import { MessagesComponent }    from './messages/messages.component';
 
@@ -25,7 +25,7 @@ import { AppRoutingModule }     from './app-routing.module';
     HeroDetailComponent,
     MessagesComponent
   ],
-  providers: [ HeroService, MessageService ],
+  providers: [ PlayerService, MessageService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
