@@ -1,23 +1,34 @@
 <h2>Draft Page</h2>
 
-<div style="width: 50%; float: left;">
-  <h3>Players</h3>
-  <ul class="items-list players">
-    <li *ngFor="let player of players">
-      <a routerLink="/detail/{{player.id}}">
-        <span class="badge">{{player.id}}</span> {{player.name}}
-      </a>
-    </li>
-  </ul>
-</div>
+<ng-container *ngIf="!viewRoster">
+  <div class="container">
+    <h3>Players Still In Draft</h3>
+    <ul class="items-list players">
+      <ng-container *ngFor="let player of players">
+        <li *ngIf="player.team === ''">
+          <a routerLink="/detail/{{player.id}}">
+            <span class="badge">{{player.id}}</span> {{player.name}}
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
 
-<div style="width: 50%; float: left;">
-  <h3>Teams</h3>
-  <ul class="items-list teams">
-    <li *ngFor="let player of players">
-      <a routerLink="/detail/{{player.id}}">
-        <span class="badge">{{player.id}}</span> {{player.name}}
-      </a>
-    </li>
-  </ul>
-</div>
+  <div class="container">
+    <h3>Teams With Pick Remaining</h3>
+    <ul class="items-list teams">
+      <ng-container *ngFor="let team of teams">
+        <li *ngIf="team.player === null">
+          <span class="badge">{{team.id}}</span> {{team.name}}
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="viewRoster">
+  view roster
+  <a routerLink="/roster">
+    roster
+  </a>
+</ng-container>

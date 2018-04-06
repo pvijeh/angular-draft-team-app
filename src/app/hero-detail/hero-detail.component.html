@@ -1,14 +1,31 @@
 <div *ngIf="player">
   <h2>{{ player.name | uppercase }} Details</h2>
-  <div><span>id: </span>{{player.id}}</div>
-  <div><span>id: </span>{{player.team}}</div>
+  <div><span>name: </span>{{player.name}}</div>
+  <div><span>team: </span>{{player.college}}</div>
+  <div><span>team: </span>{{player.height}}</div>
+  <div><span>team: </span>{{player.weight}}</div>
+  <div><span>team: </span>{{player.team}}</div>
   <div>
-    <label>name:
+  
+    <h3>Edit player Details</h3>
+
+    <p>Edit player name:</p>
+    <label>Name:
       <input [(ngModel)]="player.name" placeholder="name"/>
+      <input [(ngModel)]="player.college" placeholder="name"/>
+      <input [(ngModel)]="player.height" placeholder="name"/>
+      <input [(ngModel)]="player.weight" placeholder="name"/>
     </label>
-    <label>team:
-      <input [(ngModel)]="player.team" placeholder="name"/>
-    </label>
+
+    <p>Select Player Team:</p>
+    <ul class="items-list teams">
+      <ng-container *ngFor="let team of teams">
+        <li *ngIf="team.player === null">
+          <input type="radio" (change)="handleChange($event, team, player)" [value]="team.name"> {{team.name}}
+        </li>
+      </ng-container>
+    </ul>
   </div>
   <button (click)="goBack()">go back</button>
 </div>
+

@@ -1,23 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
 
+import { Team } from '../team';
+import { TeamService } from '../team.service';
+import {Router} from '@angular/router';
+
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-heroes',
   templateUrl: './dashboard.component.html',
-  styleUrls: [ './dashboard.component.css' ]
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  players: Player[] = [];
+  teams: Team[];
 
-  constructor(private playerService: PlayerService) { }
+  constructor(
+    private teamService: TeamService,
+    private router: Router,
+   ) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getTeams();
+    this.checkAllTeamsPicked();
   }
 
-  getHeroes(): void {
-    this.playerService.getHeroes()
-      .subscribe(players => this.players = players.slice(1, 5));
+  getTeams(): void {
+    this.teamService.getTeams()
+    .subscribe(teams => this.teams = teams);
+  }
+
+  checkAllTeamsPicked(): void {
+    let count = 0;
+
+    this.teams.forEach( team => {
+      if( team.player !== null ) {
+        count++;
+      }
+    })
+
+    if(count !== this.teams.length) {
+      this.router.navigateByUrl('/players');
+    }
   }
 }

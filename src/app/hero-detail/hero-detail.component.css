@@ -1,7 +1,7 @@
 /* HeroDetailComponent's private CSS styles */
 label {
   display: inline-block;
-  width: 3em;
+  width: 100%;
   margin: .5em 0;
   color: #607D8B;
   font-weight: bold;
@@ -27,4 +27,8 @@ button:disabled {
   background-color: #eee;
   color: #ccc;
   cursor: auto;
+}
+
+li {
+  list-style-type: none;
 }
